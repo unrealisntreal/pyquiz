@@ -18,5 +18,5 @@ pip install -r requirements.txt
 Launch the program.
 
 ```bash
-python main.py
+py qcmaker
 ```
