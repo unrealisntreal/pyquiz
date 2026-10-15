@@ -1,10 +1,14 @@
 import playsound3
+from playsound3.playsound3 import Sound
 
-music = None
+_music = None
 
 def start_music():
-    music = playsound3.playsound("assets/music.mp3", False)
+    global _music
+    _music = playsound3.playsound("assets/music.mp3", False)
 
 def stop_music():
-    music.stop()
-    music = None
+    global _music
+
+    _music.stop()
+    _music = None

@@ -1,14 +1,14 @@
-import playsound3
-import asyncio
+from modules import sound_player
 import rich
 
-def get_music() -> Sound:
-  return playsound3.playsound("assets/music.mp3", False)
-
 def main():
-  music = get_music()
+  sound_player.start_music()
 
   rich.print("[blue]Program  started[/blue]")
+
+  while True:
+    import time
+    time.sleep(3.0)
 
 if __name__ == "__main__":
   main()
