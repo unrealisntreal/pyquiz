@@ -1,5 +1,4 @@
-from playsound3 import playsound
-from rich import print
+import rich
 
-def ask(question: str, answers: list):
+def ask(content: str):
     pass
