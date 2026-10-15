@@ -1,16 +1,8 @@
 import os
-import rich
+from rich import print
 
-separator_length = 50
-
-colors = [
-    "red", "dark_orange", "gold1",
-    "green", "blue", "hot_pink",
-    "purple"
-]
-
-def warning(text: str):
-    rich.print("[gold1]/!\ " + text)
+def show(text: str):
+    print(text)
 
 def clear():
     if os.name == "nt":
@@ -18,24 +10,42 @@ def clear():
     else:
         os.system("clear")
 
-def title():
-    separator()
-    rich.print("[gold1]" + "QCMAKER".center(separator_length) + "[/gold1]")
-    separator()
+def warning(text: str) -> str:
+    return r"[gold1]/!\ " + text
 
-def separator():
+def separator(length: int, color: str) -> str:
+    return f"[{color}]{"=" * length}[/{color}]"
+
+def center(text: str, length: int = 1, color: str = "white") -> str:
+    return f"[{color}]{text.center(length)}[/{color}]"
+
+def rainbow_seperator(length: int) -> str:
+    colors = [
+        "red", "dark_orange", "gold1",
+        "green", "blue", "hot_pink",
+        "purple"
+    ]
+
     text = ""
 
     i = 0
     j = 0
-    while i < separator_length:
+    while i < length:
         if j == len(colors):
             j = 0
-        
         color = colors[j]
-        text += f"[{colors[j]}]=[/{color}]"
 
+        text += separator(length=1, color=color)
         i += 1
         j += 1
     
-    rich.print(text)
+    return text
+
+def title(text: str):
+    length = 50
+
+    return f"""
+    {rainbow_seperator(length=length)}
+    {center(text=text, length=length, color="gold1")}
+    {rainbow_seperator(length=length)}
+    """

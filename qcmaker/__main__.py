@@ -11,9 +11,9 @@ def ask():
 
     while True:
         graphics.clear()
-        graphics.title()
+        graphics.show(graphics.title("QCMAKER"))
 
-        if warn: graphics.warning("Could not find text file.")
+        if warn: graphics.show(graphics.warning("Could not find text file."))
         response = Prompt.ask("Write the directory of your questionnaire text file")
         
         warn = True
