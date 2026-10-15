@@ -14,3 +14,9 @@ py -m pip install -r requirements.txt
 ```bash
 pip install -r requirements.txt
 ```
+
+Launch the program.
+
+```bash
+python main.py
+```
