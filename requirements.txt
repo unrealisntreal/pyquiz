@@ -1,2 +1,2 @@
 rich
-playsound3
+audioplayer
