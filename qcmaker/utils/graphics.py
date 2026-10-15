@@ -1,8 +1,17 @@
+"""
+    Description
+    -----------
+    Module permettant d'afficher des visuels complexes pour applications de terminal.
+
+    - Génère des visuels avec les fonctions `separator`, `center`, `warning`, ...
+    - Affiche les visuels avec la commande `show`.
+"""
+
 import os
-from rich import print
+import rich
 
 def show(text: str):
-    print(text)
+    rich.print(text)
 
 def clear():
     if os.name == "nt":
