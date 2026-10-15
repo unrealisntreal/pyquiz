@@ -1,5 +1,5 @@
 # qcmaker
-A lightweight multiple-question questionnaire loader
+A lightweight multiple-question questionnaire loader.
 
 ### How to use
 
