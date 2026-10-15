@@ -12,3 +12,4 @@ def stop_music():
 
     _music.stop()
     _music = None
+    
