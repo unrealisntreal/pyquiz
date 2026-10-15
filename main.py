@@ -1,4 +1,7 @@
+from rich import print
+
 def main():
-  pass
+  print("[green]Program  started[/green]")
+
 if __name__ == "__main__":
   main()

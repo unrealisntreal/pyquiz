@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
     Exemple d'utilisation de la librairie:
     -------------------------------------
@@ -25,7 +26,6 @@
         * Le troisième est une explication éventuelle adjointe au choix lors de la correction.
 
 """
-
 
 def build_questionnaire(filename):
     """
