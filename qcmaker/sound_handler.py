@@ -17,6 +17,8 @@ from utils import relative
 from typing import Literal
 from audioplayer import AudioPlayer
 
+ASSET_DIR = "qcmaker/assets/"
+
 type Available = Literal[
     "fail",
     "music",
@@ -24,9 +26,9 @@ type Available = Literal[
 ]
 
 audio_players = {
-    "fail": AudioPlayer(relative.get(__file__, "fail.wav")),
-    "music": AudioPlayer(relative.get(__file__, "music.wav")),
-    "finish": AudioPlayer(relative.get(__file__, "finish.wav"))
+    "fail": AudioPlayer(ASSET_DIR + "fail.wav"),
+    "music": AudioPlayer(ASSET_DIR + "music.wav"),
+    "finish": AudioPlayer(ASSET_DIR + "finish.wav")
 }
 
 def play(name: Available):
