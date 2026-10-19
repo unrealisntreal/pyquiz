@@ -2,6 +2,7 @@ from utils import graphics
 from utils import qcm
 
 import rich
+import string
 import random
 
 def main():
@@ -10,15 +11,26 @@ def main():
     questions = qcm.build_questionnaire(filename)
     random.shuffle(questions)
 
+    ALPHABET = string.ascii_letters
+
     for question in questions:
         title = question[0]
 
         responses = question[1]
         random.shuffle(responses)
 
+        graphics.show(graphics.card(title))
+
         i = 1
-        for response in responses:
-            graphics.show(graphics.color(f"({i})"))
+        for letter, response in zip(ALPHABET, responses):
+            title = response[0]
+
+            graphics.show(
+                graphics.color("gold1") +
+                graphics.text(f"({letter})")  +
+                graphics.text(title)
+            )
+
             i += 1 
 
 def ask_for_file():

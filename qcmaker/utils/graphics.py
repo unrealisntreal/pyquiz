@@ -10,6 +10,8 @@
 import os
 import rich
 
+_color = "white"
+
 def show(text: str):
     rich.print(text)
 
@@ -19,50 +21,54 @@ def clear():
     else:
         os.system("clear")
 
-def color(color: str, text: str) -> str:
-    return f"[{color}]{text}[/{color}]"
+def text(content: str) -> str:
+    global _color
+    t = f"[{_color}]{content}[/{_color}]"
+    _color = "white"
 
-def warning(text: str) -> str:
-    return color(
-        color="gold1",
-        text=r"/!\ " + text
-    )
+    return t
+
+def color(color: str) -> str:
+    global _color
+    _color = color
+    return ""
+
+def warning(content: str) -> str:
+    color("gold1")
+    return text("/!\ " + content)
 
 def separator(length: int) -> str:
-    return "=" * length
+    return text("=" * length)
 
-def center(text: str, length: int = 1) -> str:
-    return text.center(length)
+def center(content: str, length: int = 1) -> str:
+    return text(content.center(length))
 
 def rainbow_seperator(length: int) -> str:
-    colors = [
-        "red", "dark_orange", "gold1",
-        "green", "blue", "hot_pink",
-        "purple"
-    ]
+    COLORS = (
+        "red", "dark_orange", "gold1", "green",
+        "blue", "hot_pink", "purple"
+    )
 
-    text = ""
+    sep = ""
 
     i = 0
     j = 0
     while i < length:
-        if j == len(colors):
+        if j == len(COLORS):
             j = 0
-        
-        text += color(
-            color=colors[j],
-            text="="
-        )
+
+        sep += color(COLORS[j]) + text("=")
+
         i += 1
         j += 1
     
-    return text
+    return sep
 
 def card(text: str):
-    length = 50
+    LENGTH = 50
 
     return f"""
-    {rainbow_seperator(length)}
-    {color(color="gold1", text=center(text, length))}
-    {rainbow_seperator(length)}
+    {rainbow_seperator(LENGTH)}
+    {color("gold1") + center(text, LENGTH)}
+    {rainbow_seperator(LENGTH)}
     """
