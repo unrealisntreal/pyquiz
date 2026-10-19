@@ -1,23 +1,26 @@
 from utils import graphics
 from utils import qcm
 
-from rich.prompt import Prompt
-
 def main():
     filename = ask()
 
 def ask():
-    warn = False
+    warn = ""
 
     while True:
         graphics.clear()
         graphics.show(graphics.title("QCMAKER"))
 
-        if warn:
-            graphics.show(graphics.warning("Could not find text file."))
-        response = Prompt.ask("Write the directory of your questionnaire text file")
+        if warn != "":
+            graphics.show(graphics.warning(warn))
         
-        warn = True
+        response = input("Write the directory of your questionnaire text file: ")
+        try:
+            open(response)
+            break
+        except FileNotFoundError:
+            warn = "Could not find text file."
+
 
 if __name__ == "__main__":
     main()

@@ -43,7 +43,7 @@ def rainbow_seperator(length: int) -> str:
         if j == len(colors):
             j = 0
         color = colors[j]
-
+        
         text += separator(length=1, color=color)
         i += 1
         j += 1
