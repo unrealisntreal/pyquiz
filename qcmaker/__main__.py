@@ -10,8 +10,16 @@ def main():
     questions = qcm.build_questionnaire(filename)
     random.shuffle(questions)
 
-    for q in questions:
-        print(q[0])
+    for question in questions:
+        title = question[0]
+
+        responses = question[1]
+        random.shuffle(responses)
+
+        i = 1
+        for response in responses:
+            graphics.show(graphics.color(f"({i})"))
+            i += 1 
 
 def ask_for_file():
     response = None

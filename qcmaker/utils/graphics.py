@@ -51,7 +51,7 @@ def rainbow_seperator(length: int) -> str:
         
         text += color(
             color=colors[j],
-            text=separator(1)
+            text="="
         )
         i += 1
         j += 1
