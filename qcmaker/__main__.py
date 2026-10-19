@@ -1,3 +1,4 @@
+from audioplayer import AudioPlayer
 from utils import graphics
 from utils import qcm
 
@@ -12,6 +13,7 @@ def main():
     random.shuffle(questions)
 
     ALPHABET = string.ascii_letters
+    AudioPlayer("assets/music.mp3").play(loop=True) # Audio not working
 
     for question in questions:
         title = question[0]
@@ -19,6 +21,7 @@ def main():
         responses = question[1]
         random.shuffle(responses)
 
+        graphics.clear()
         graphics.show(graphics.card(title))
 
         i = 1
@@ -27,11 +30,13 @@ def main():
 
             graphics.show(
                 graphics.color("gold1") +
-                graphics.text(f"({letter})")  +
-                graphics.text(title)
+                graphics.text(f"({letter})") +
+                graphics.text(f" {title}")
             )
 
-            i += 1 
+            i += 1
+        
+        answer = input("\nSelect your answer: ")
 
 def ask_for_file():
     response = None
