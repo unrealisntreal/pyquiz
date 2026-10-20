@@ -14,7 +14,7 @@ def choose_mode():
         graphics.show(graphics.card("QCMAKER"))
 
         if warn_msg != "":
-            graphics.shoz(graphics.warning(warn_msg))
+            graphics.show(graphics.warning(warn_msg))
 
         print("\nChoisissez votre mode de jeu :")
         print("(1) Examen : seul le score avec malus est affiché")
