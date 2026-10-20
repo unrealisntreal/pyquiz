@@ -32,7 +32,6 @@ def choose_mode():
 
 def score_question(responses, selected, notation):
     nb_correct = 0
-    nb_correct = 0
     for response in responses:
         if response[1]:
             nb_correct += 1
@@ -85,7 +84,7 @@ def main():
     questions = qcm.build_questionnaire(filename)
     random.shuffle(questions)
 
-    ALPHABET = string.ascii_letters_lowercase
+    ALPHABET = string.ascii_letters
     AudioPlayer("assets/music.mp3").play(loop=True) #Audio marche pas
     
     total_sans_malus = 0
