@@ -7,57 +7,89 @@ import string
 import random
 
 def choose_mode():
-    """Demande le mode de jeu et le barème de notation."""
+    """Demande le mode de jeu: Examen ou fiendly"""
+    warn_msg = ""
     while True:
         graphics.clear()
         graphics.show(graphics.card("QCMAKER"))
 
-        print("\nChoisissez votre mode de jeu :")
-        print("(1) Examen : notation avec malus")
-        print("(2) Friendly : choix avec ou sans malus")
+        if warn_msg != "":
+            graphics.shoz(graphics.warning(warn_msg))
 
-        mode = input("Votre choix (1/2) : ").strip()
+        print("\nChoisissez votre mode de jeu :")
+        print("(1) Examen : seul le score avec malus est affiché")
+        print("(2) Friendly : score sans malus, et score avec malus si vous le demandez")
+
+        mode = input("Votre choix : ").strip()
 
         if mode == "1":
-            return "Examen", "malus"
-
+            return "Examen"
+        
         elif mode == "2":
-            while True:
-                print("\nChoisissez votre notation :")
-                print("(1) Avec malus")
-                print("(2) Sans malus")
-
-                notation = input("Votre choix : ").strip()
-
-                if notation == "1":
-                    return "Friendly", "malus"
-                elif notation == "2":
-                    return "Friendly", "sans_malus"
-
-                print("Choix invalide. Entrez 1 ou 2.")
-
-        print("Choix invalide. Entrez 1 ou 2.")
+            return "Friendly"
+        else:
+            warn_msg = "Choix invalide. Entrez 1 ou 2."
 
 def score_question(responses, selected, notation):
-    score = 0
+    nb_correct = 0
+    nb_correct = 0
+    for response in responses:
+        if response[1]:
+            nb_correct += 1
+    nb_wrong = len(responses) - nb_correct
 
-    for i in range(len(responses)):
-        if i in selected:
-            if responses[i][1]:
-                score += 1
-            elif notation == "malus":
-                score -= 1
+    # Pas de réponse (ou question sans bonne réponse) : 0 point
+    if len(selected) == 0 or nb_correct == 0:
+        return 0
 
+    # On compte les bonnes et les mauvaises réponses cochées
+    good = 0
+    bad = 0
+    for i in selected:
+        if responses[i][1]:
+            good += 1
+        else:
+            bad += 1
+
+    # Choix unique
+    if nb_correct == 1:
+        if good == 1:
+            return 1
+        if notation == "malus":
+            return -1
+        return 0
+
+    # Choix multiple : une question vaut 1 point maximum
+    score = good / nb_correct
+    if bad > 0:
+        if notation == "malus":
+            score -= bad / nb_wrong
+        else:
+            score = 0
     return score
+
+
+
+def is_multiple(responses):
+    """Renvoie True si la question a plusieurs bonnes réponses."""
+    nb_correct = 0
+    for response in responses:
+        if response[1]:
+            nb_correct += 1
+    return nb_correct > 1
 
 def main():
     filename = ask_for_file()
+    mode = choose_mode()
 
     questions = qcm.build_questionnaire(filename)
     random.shuffle(questions)
 
-    ALPHABET = string.ascii_letters
-    AudioPlayer("assets/music.mp3").play(loop=True) # Audio not working
+    ALPHABET = string.ascii_letters_lowercase
+    AudioPlayer("assets/music.mp3").play(loop=True) #Audio marche pas
+    
+    total_sans_malus = 0
+    total_avec_malus = 0
 
     for question in questions:
         title = question[0]
@@ -80,7 +112,13 @@ def main():
 
             i += 1
         
-        answer = input("\nSelect your answer: ")
+        multiple = is_multiple(responses) #cherche si la question a plusieurs bonnes réponses
+        selected = ask_for_answer(len(responses), multiple)
+
+        total_sans_malus += score_question(responses, selected, "sans_malus")  
+        total_avec_malus += score_question(responses, selected, "malus")
+
+    show_results(mode, len(questions), total_sans_malus, total_avec_malus)
 
 def ask_for_file():
     response = None
