@@ -6,6 +6,50 @@ import rich
 import string
 import random
 
+def choose_mode():
+    """Demande le mode de jeu et le barème de notation."""
+    while True:
+        graphics.clear()
+        graphics.show(graphics.card("QCMAKER"))
+
+        print("\nChoisissez votre mode de jeu :")
+        print("(1) Examen : notation avec malus")
+        print("(2) Friendly : choix avec ou sans malus")
+
+        mode = input("Votre choix (1/2) : ").strip()
+
+        if mode == "1":
+            return "Examen", "malus"
+
+        elif mode == "2":
+            while True:
+                print("\nChoisissez votre notation :")
+                print("(1) Avec malus")
+                print("(2) Sans malus")
+
+                notation = input("Votre choix : ").strip()
+
+                if notation == "1":
+                    return "Friendly", "malus"
+                elif notation == "2":
+                    return "Friendly", "sans_malus"
+
+                print("Choix invalide. Entrez 1 ou 2.")
+
+        print("Choix invalide. Entrez 1 ou 2.")
+
+def score_question(responses, selected, notation):
+    score = 0
+
+    for i in range(len(responses)):
+        if i in selected:
+            if responses[i][1]:
+                score += 1
+            elif notation == "malus":
+                score -= 1
+
+    return score
+
 def main():
     filename = ask_for_file()
 
