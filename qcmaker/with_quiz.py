@@ -1,8 +1,6 @@
 from typing import Literal
 from utils.quiz import Quiz, Score
 
-import random
-
 def get_gamemode() -> str:
     while True:
         print("Choose your gamemode")
@@ -25,14 +23,13 @@ def get_answers() -> list:
         except:
             print("Unknown Error.")
 
-def get_quiz() -> str:
+def get_quiz() -> Quiz:
     while True:
-        response = input("Write the directory of your quiz text file: ")
+        response = input("Insert the directory of your quiz text file: ")
         
         try:
             quiz = Quiz(response)
-            open(response).close()
-            return response
+            return quiz
         except any as error:
             print(error)
 
@@ -40,22 +37,25 @@ def show_question_title(question: list):
     print(question[0])
 
 def main():
-    filepath  = get_filepath()
-    gamemode  = get_gamemode()
-    questions = get_questions(filepath)
-    score     = Score()
+    gamemode = get_gamemode()
+    score    = Score()
+    quiz     = get_quiz()
 
-    for question in questions:
-        print(question[0])
-        responses = get_responses(question)
+    for question in quiz.questions:
+        print(question.get("text"))
+        choices = question.get("choices")
 
-        for position, response in enumerate(responses):
-            print(f"({position}) {response[0]}")
+        for position, choice in enumerate(choices):
+            print(f"({position + 1}) {choice.get("text")}")
         
-        score.register(responses, get_answers())
+        score.register(choices, get_answers())
 
     print(gamemode)
-    print(score)
+    print(f"""
+    Final Score
+    Sans Malus: {score.score}
+    Avec Malus: {score.score - score.wrong}
+    """)
 
 if __name__ == "__main__":
     main()
