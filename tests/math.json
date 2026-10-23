@@ -1,7 +1,6 @@
 {
     "name": "Ultimate Math Test",
     "author": "unrealisntreal",
-
     "questions": [
         {
             "text": "What's 1+1?",
@@ -22,17 +21,16 @@
                 }
             ]
         },
-
         {
             "text": "Is 1/0 a valid mathematical operation?",
             "choices": [
                 {
                     "text": "No",
+                    "note": "Not to confuse with 1/inf, which is valid! And is equal to 0.",
                     "correct": true
                 },
                 {
                     "text": "Yes",
-                    "note": "Not to confuse with 1/inf, which is valid! And is equal to 0.",
                     "correct": false
                 }
             ]

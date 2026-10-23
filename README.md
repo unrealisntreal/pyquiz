@@ -2,7 +2,6 @@
 A lightweight questionnaire loader.
 
 ### How to use
-
 Install the required dependencies.
 
 - 💻 Windows
