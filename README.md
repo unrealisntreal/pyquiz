@@ -1,5 +1,5 @@
 # qcmaker
-A lightweight questionnaire loader.
+A fun and lightweight quiz loader.
 
 ### How to use
 Install the required dependencies.
