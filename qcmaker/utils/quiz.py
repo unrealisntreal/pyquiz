@@ -3,6 +3,10 @@ import random
 
 
 class Quiz:
+    name: str
+    author: str
+    questions: list
+
     def __init__(self, path: str):
         try:
             with open(path, mode="r", encoding="utf-8") as file:
