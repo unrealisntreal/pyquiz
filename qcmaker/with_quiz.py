@@ -51,11 +51,13 @@ def main():
         score.register(choices, get_answers())
 
     print(gamemode)
-    print(f"""
+    print(
+        f"""
     Final Score
     Sans Malus: {score.score}
     Avec Malus: {score.score - score.wrong}
-    """)
+    """
+    )
 
 
 if __name__ == "__main__":
