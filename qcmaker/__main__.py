@@ -37,6 +37,7 @@ def get_quiz() -> Quiz:
 
 
 def main():
+    # TODO: Gamemode should do something.
     gamemode = get_gamemode()
     score = Score()
     quiz = get_quiz()
@@ -48,7 +49,7 @@ def main():
         for position, choice in enumerate(choices):
             print(f"({position + 1}) {choice.get("text")}")
 
-        # Note doesn't show on the screen. Not implemented yet.
+        # TODO: Note should show on the the screen.
         score.register(choices, get_answers())
 
     print(
