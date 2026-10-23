@@ -50,13 +50,8 @@ def main():
 
         score.register(choices, get_answers())
 
-    print(gamemode)
     print(
-        f"""
-    Final Score
-    Sans Malus: {score.score}
-    Avec Malus: {score.score - score.wrong}
-    """
+        f"Gamemode: {gamemode.capitalize()}\nFinal Score: {score.score}\nWith Negative Marking: {score.score - score.wrong}"
     )
 
 
