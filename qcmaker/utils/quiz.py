@@ -50,7 +50,7 @@ class Score:
 
         correct = True
         for i, choice in enumerate(choices):
-            if i in answers:
+            if (i + 1) in answers:
                 if not choice.get("correct"):
                     correct = False
                     break

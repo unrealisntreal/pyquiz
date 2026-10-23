@@ -7,7 +7,7 @@ def get_gamemode() -> str:
         print("Ranked: Score increases with reaction time.")
         print("Casual: Best fit for starters.")
 
-        mode = input("Your pick : ").strip().lower()
+        mode = input("Your pick: ").strip().lower()
 
         if mode in ("casual", "ranked"):
             return mode
