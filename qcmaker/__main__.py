@@ -48,6 +48,7 @@ def main():
         for position, choice in enumerate(choices):
             print(f"({position + 1}) {choice.get("text")}")
 
+        # Note doesn't show on the screen. Not implemented yet.
         score.register(choices, get_answers())
 
     print(
