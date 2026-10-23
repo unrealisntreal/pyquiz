@@ -1,0 +1,41 @@
+{
+    "name": "Ultimate Math Test",
+    "author": "unrealisntreal",
+
+    "questions": [
+        {
+            "text": "What's 1+1?",
+            "choices": [
+                {
+                    "text": "2",
+                    "correct": true,
+                    "required": true
+                },
+                {
+                    "text": "3 - 1",
+                    "correct": true
+                },
+                {
+                    "text": "4",
+                    "note": "Why the hell would that be true?",
+                    "correct": false
+                }
+            ]
+        },
+
+        {
+            "text": "Is 1/0 a valid mathematical operation?",
+            "choices": [
+                {
+                    "text": "No",
+                    "correct": true
+                },
+                {
+                    "text": "Yes",
+                    "note": "Not to confuse with 1/inf, which is valid! And is equal to 0.",
+                    "correct": false
+                }
+            ]
+        }
+    ]
+}

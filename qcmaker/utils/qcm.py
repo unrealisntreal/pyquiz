@@ -1,6 +1,13 @@
 #!/usr/bin/env python3
 
 """
+    Modifications
+    -------------
+
+    The library now generates tuples instead of lists.
+"""
+
+"""
     Exemple d'utilisation de la librairie:
     -------------------------------------
 
