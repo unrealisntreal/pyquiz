@@ -16,8 +16,8 @@
                 },
                 {
                     "text": "4",
-                    "note": "Why the hell would that be true?",
-                    "correct": false
+                    "correct": false,
+                    "feedback": "Why the hell would that be true?"
                 }
             ]
         },
@@ -26,8 +26,8 @@
             "choices": [
                 {
                     "text": "No",
-                    "note": "Not to confuse with 1/inf, which is valid! And is equal to 0.",
-                    "correct": true
+                    "correct": true,
+                    "feedback": "Not to confuse with 1/inf, which is valid! And is equal to 0."
                 },
                 {
                     "text": "Yes",

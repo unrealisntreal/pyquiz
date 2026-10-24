@@ -1,0 +1,143 @@
+import json
+import random
+
+DEFAULT_NAME = "Untitled Quiz"
+DEFAULT_AUTHOR = "Unknown Author"
+
+
+def decode_legacy(path: str) -> list:
+    """Legacy solution to decode quiz configuration files."""
+
+    questions = []
+    wording = None
+    choices = []
+    with open(path, encoding="utf-8") as file:
+        for line in file.readlines():
+            if "|" not in line:
+                if wording or choices:
+                    questions.append([wording, choices])
+                wording = None
+                choices = []
+            else:
+                parts = line.strip().split("|")
+                if 1 < len(parts) < 5:
+                    if parts[0] == "Q":
+                        if not wording and not choices:
+                            wording = parts[1]
+                            choices = []
+                        else:
+                            questions.append([wording, choices])
+                            wording = None
+                            choices = []
+                    elif parts[0] == "A":
+                        if parts[2] not in ("V", "X"):
+                            print("Error when loading line:\n\t{}".format(line))
+                        else:
+                            choices.append(
+                                [
+                                    parts[1],
+                                    parts[2] == "V",
+                                    parts[3] if len(parts) > 3 else "",
+                                ]
+                            )
+                    else:
+                        print("Error when loading line:\n\t{}".format(line))
+                else:
+                    print("Error when loading line:\n\t{}".format(line))
+
+                if line.startswith("Q"):
+                    wording = parts[1]
+
+    if wording or choices:
+        questions.append([wording, choices])
+    return questions
+
+
+class Quiz:
+    name: str
+    author: str
+    questions: list
+
+    def __init__(self, path: str):
+        if path.endswith(".txt"):
+            try:
+                with open(path, mode="r", encoding="utf-8") as file:
+                    legacy_questions = decode_legacy(path)
+            except:
+                raise ValueError("Unknown Legacy Decoding Error.")
+
+            questions = []
+            for i, legacy_question in enumerate(legacy_questions):
+                choices = []
+                for legacy_choice in legacy_question[1]:
+                    choices.append(
+                        {
+                            "text": legacy_choice[0],
+                            "correct": legacy_choice[1],
+                            "feedback": legacy_choice[2],
+                        }
+                    )
+                questions.append({"text": legacy_question[0], "choices": choices})
+
+            self.name = DEFAULT_NAME
+            self.author = DEFAULT_AUTHOR
+            self.questions = questions
+
+        elif path.endswith(".json"):
+            try:
+                with open(path, mode="r", encoding="utf-8") as file:
+                    quiz = json.load(file)
+            except FileNotFoundError:
+                raise FileNotFoundError(f"Quiz could not be found in path {path}")
+            except json.JSONDecodeError:
+                raise ValueError("Quiz contains invalid JSON code.")
+
+            if not isinstance(quiz, dict):
+                raise TypeError("Quiz JSON root must be a dictionary.")
+
+            questions = quiz.get("questions")
+            if not questions:
+                raise ValueError("Quiz does not have any questions.")
+
+            for i, question in enumerate(questions):
+                choices = question.get("choices")
+                if not choices:
+                    raise ValueError(f"Question {i} does not have any choices.")
+
+            self.name = quiz.get("name", DEFAULT_NAME)
+            self.author = quiz.get("author", DEFAULT_AUTHOR)
+            self.questions = questions
+
+        self.shuffle()
+
+    def shuffle(self):
+        questions = self.questions
+        random.shuffle(questions)
+
+        for question in questions:
+            choices = question.get("choices")
+            random.shuffle(choices)
+
+
+class Score:
+    def __init__(self):
+        self.score = 0
+        self.wrong = 0
+
+    def register(self, choices: list, answers: list):
+        if not answers:
+            return
+
+        correct = True
+        for i, choice in enumerate(choices):
+            if (i + 1) in answers:
+                if not choice.get("correct"):
+                    correct = False
+                    break
+            elif choice.get("required"):
+                correct = False
+
+        if correct:
+            self.score += 1
+        else:
+            self.wrong += 1
