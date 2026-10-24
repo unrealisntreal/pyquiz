@@ -1,5 +1,5 @@
 import webbrowser
-from utils import ascii
+import ascii
 
 from textual import on
 from textual.app import App, ComposeResult

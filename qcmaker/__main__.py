@@ -1,4 +1,4 @@
-from utils.quiz import Quiz, Score
+from decoders.quiz import Quiz, Score
 
 
 def get_gamemode() -> str:
