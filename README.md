@@ -1,4 +1,4 @@
-# qcmaker
+# pyquiz
 A fun and lightweight quiz loader.
 
 ### How to use
@@ -17,5 +17,5 @@ pip install -r requirements.txt
 Launch the program.
 
 ```bash
-py qcmaker
+py pyquiz
 ```
