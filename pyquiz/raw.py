@@ -39,7 +39,7 @@ def get_quiz() -> Quiz:
 def main():
     print("Running PyQuiz on Prototype Version")
 
-    # TODO: Gamemode should do something.
+    # TODO: Gamemode doesn't do anything so far.
     gamemode = get_gamemode()
     score = Score()
     quiz = get_quiz()
@@ -51,7 +51,8 @@ def main():
         for position, choice in enumerate(choices):
             print(f"({position + 1}) {choice.get("text")}")
 
-        # TODO: Note should show on the the screen.
+        # TODO: Feedback should show on the the screen.
+        # FIXME: Writing a negative number counts as a correct answer.
         score.register(choices, get_answers())
 
     print(
