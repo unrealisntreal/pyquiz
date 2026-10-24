@@ -37,6 +37,8 @@ def get_quiz() -> Quiz:
 
 
 def main():
+    print("Running PyQuiz on Prototype Version")
+
     # TODO: Gamemode should do something.
     gamemode = get_gamemode()
     score = Score()

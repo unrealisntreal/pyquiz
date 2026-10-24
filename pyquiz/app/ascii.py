@@ -1,8 +1,6 @@
-BANNER = """
-[cornflowerblue]╭─╮[/][gold]╷ ╷[/]╭─╮╷ ╷╷╶─╮
+BANNER = """[cornflowerblue]╭─╮[/][gold]╷ ╷[/]╭─╮╷ ╷╷╶─╮
 [cornflowerblue]├─╯[/][gold]╰┬╯[/]│╮││ ││╭─╯
-[cornflowerblue]╵  [/][gold] ╵ [/]╰┴╯╰─╯╵╰─╴ [grey]v0.0.1[/]
-""".strip()
+[cornflowerblue]╵  [/][gold] ╵ [/]╰┴╯╰─╯╵╰─╴ [grey]v0.0.1[/]"""
 
 LIBRARY = """
          ,..........   ..........,
