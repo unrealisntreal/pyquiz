@@ -1,5 +1,5 @@
 # pyquiz
-A fun and lightweight quiz loader.
+A fun and lightweight python quiz loader.
 
 ### How to use
 Install the required dependencies.
