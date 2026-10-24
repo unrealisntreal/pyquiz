@@ -34,6 +34,8 @@ class Quiz:
         self.author = quiz.get("author", "Unknown Author")
         self.questions = questions
 
+        self.shuffle()
+
     def shuffle(self):
         questions = self.questions
         random.shuffle(questions)

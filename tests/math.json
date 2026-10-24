@@ -34,6 +34,19 @@
                     "correct": false
                 }
             ]
+        },
+        {
+            "text": "Choose a fraction equal to 4/3",
+            "choices": [
+                {
+                    "text": "6/4",
+                    "correct": false
+                },
+                {
+                    "text": "8/6",
+                    "correct": true
+                }
+            ]
         }
     ]
 }
