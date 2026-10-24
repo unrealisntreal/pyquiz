@@ -26,18 +26,14 @@ def get_answers() -> list:
 
 
 def get_quiz() -> Quiz:
-    response = input("Insert the directory of your quiz text file: ")
-    quiz = Quiz(response)
-    return quiz
+    while True:
+        response = input("Insert the directory of your quiz text file: ")
 
-    # while True:
-    #    response = input("Insert the directory of your quiz text file: ")
-    #
-    #    try:
-    #        quiz = Quiz(response)
-    #        return quiz
-    #    except:
-    #        print("Unknown Error.")
+        try:
+            quiz = Quiz(response)
+            return quiz
+        except:
+            print("Unknown Error.")
 
 
 def main():
