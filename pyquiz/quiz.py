@@ -12,7 +12,7 @@ def decode_legacy(path: str) -> list:
     wording = None
     choices = []
     with open(path, encoding="utf-8") as file:
-        for line in file.readlines():
+        for line in file:
             if "|" not in line:
                 if wording or choices:
                     questions.append([wording, choices])
@@ -31,7 +31,7 @@ def decode_legacy(path: str) -> list:
                             choices = []
                     elif parts[0] == "A":
                         if parts[2] not in ("V", "X"):
-                            print("Error when loading line:\n\t{}".format(line))
+                            print(f"Error when loading line:\n\t{line}")
                         else:
                             choices.append(
                                 [
@@ -41,9 +41,9 @@ def decode_legacy(path: str) -> list:
                                 ]
                             )
                     else:
-                        print("Error when loading line:\n\t{}".format(line))
+                        print(f"Error when loading line:\n\t{line}")
                 else:
-                    print("Error when loading line:\n\t{}".format(line))
+                    print(f"Error when loading line:\n\t{line}")
 
                 if line.startswith("Q"):
                     wording = parts[1]
@@ -137,11 +137,7 @@ class Score:
 
             if correct == True:
                 for i, choice in enumerate(choices):
-                    if (i + 1) in answers:
-                        if not choice.get("correct"):
-                            correct = False
-                            break
-                        elif choice.get("required"):
+                    if (i + 1) in answers and not choice.get("correct") or choice.get("required"):
                             correct = False
                             break
 
