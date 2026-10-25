@@ -52,7 +52,6 @@ def main():
             print(f"({position + 1}) {choice.get("text")}")
 
         # TODO: Feedback should show on the the screen.
-        # FIXME: Writing a negative number counts as a correct answer.
         score.register(choices, get_answers())
 
     print(

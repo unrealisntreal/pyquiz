@@ -125,17 +125,25 @@ class Score:
         self.wrong = 0
 
     def register(self, choices: list, answers: list):
-        if not answers:
-            return
-
         correct = True
-        for i, choice in enumerate(choices):
-            if (i + 1) in answers:
-                if not choice.get("correct"):
+
+        if not answers:
+            correct = False
+        else:
+            for answer in answers:
+                if answer < 1 or answer > len(choices):
                     correct = False
                     break
-            elif choice.get("required"):
-                correct = False
+
+            if correct == True:
+                for i, choice in enumerate(choices):
+                    if (i + 1) in answers:
+                        if not choice.get("correct"):
+                            correct = False
+                            break
+                        elif choice.get("required"):
+                            correct = False
+                            break
 
         if correct:
             self.score += 1

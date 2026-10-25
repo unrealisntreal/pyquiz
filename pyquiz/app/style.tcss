@@ -10,7 +10,7 @@ Toast {
     background: rgba(255, 255, 255, 1);
 }
 
-Horizontal {
+#mainmenu-row {
     align: center middle;
 }
 
