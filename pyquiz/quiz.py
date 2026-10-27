@@ -124,8 +124,9 @@ class Score:
         self.score = 0
         self.wrong = 0
 
-    def register(self, choices: list, answers: list):
+    def register(self, choices: list, answers: list) -> tuple[bool, list]:
         correct = True
+        feedbacks = []
 
         if not answers:
             correct = False
@@ -137,11 +138,22 @@ class Score:
 
             if correct == True:
                 for i, choice in enumerate(choices):
-                    if (i + 1) in answers and not choice.get("correct") or choice.get("required"):
-                            correct = False
-                            break
+                    is_selected = (i + 1) in answers
+                    is_correct  = choice.get("correct", False)
+                    is_required = choice.get("required", False)
+
+                    if is_selected:
+                        feedback = choice.get("feedback")
+                        if feedback:
+                            feedbacks.append(feedback)
+
+                    if (is_selected and not is_correct) or (not is_selected and is_required):
+                        correct = False
+                        break
 
         if correct:
             self.score += 1
         else:
             self.wrong += 1
+
+        return correct, feedbacks
