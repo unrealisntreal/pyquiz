@@ -1,7 +1,0 @@
-{
-	"recommendations": [
-		"ms-python.black-formatter",
-        "ms-pyright.pyright",
-        "Textualize.textual-syntax-highlighter"
-	],
-}
