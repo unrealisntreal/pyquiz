@@ -21,9 +21,9 @@ py pyquiz
 ```
 
 ## Make your own quiz!
-You can format your quizes in two different ways.
+You can format your quizzes in two different ways.
 
-#### JSON Format
+- **Modern Format `.json`**
 ```json
 {
     "name": "My Awesome Quiz",
@@ -71,7 +71,7 @@ You can format your quizes in two different ways.
 }
 ```
 
-#### Legacy Format
+- **Legacy Format `.txt`**
 ```
 Q|What's 1+1?
 A|2|V
@@ -85,4 +85,4 @@ A|28|X
 ```
 
 > [!WARNING]
-> Legacy Format does not support the quiz name and author field!
+> Legacy Format does not support the quiz `name` and `author` field!
