@@ -1,7 +1,7 @@
 # pyquiz
 A fun and lightweight python quiz loader.
 
-### How to use
+## How to use
 Install the required dependencies.
 
 - 💻 Windows
@@ -20,10 +20,10 @@ Launch the program.
 py pyquiz
 ```
 
-### Make your own quiz!
+## Make your own quiz!
 You can format your quizes in two different ways.
 
-- JSON Format
+#### JSON Format
 ```json
 {
     "name": "My Awesome Quiz",
@@ -71,7 +71,7 @@ You can format your quizes in two different ways.
 }
 ```
 
-- Legacy Format
+#### Legacy Format
 ```
 Q|What's 1+1?
 A|2|V
@@ -84,4 +84,4 @@ A|30|V
 A|28|X
 ```
 
-> [!warning] Legacy Format does not support the quiz name and author field!
+> [!warn] Legacy Format does not support the quiz name and author field!
