@@ -111,6 +111,8 @@ class Quiz:
         self.shuffle()
 
     def shuffle(self):
+        """Randomize the position of questions and choices within the quiz."""
+        
         questions = self.questions
         random.shuffle(questions)
 
@@ -125,6 +127,19 @@ class Score:
         self.wrong = 0
 
     def register(self, choices: list, answers: list) -> tuple[bool, list]:
+        """
+        Updates the score with the user's answers for a question.
+        
+        Args:
+            choices: The list of options available for the question.
+            answers: The list of answers chosen by the user.
+        
+        Returns:
+            A tuple containing:
+                - bool: Represents if the answers were correct.
+                - list: Feedback message for each answer.
+        """
+        
         correct = True
         feedbacks = []
 
