@@ -1,5 +1,5 @@
 # pyquiz
-A fun and lightweight python quiz loader.
+A fun and lightweight python quiz loader, tested in Python `3.14`.
 
 ## How to use
 Install the required dependencies.
