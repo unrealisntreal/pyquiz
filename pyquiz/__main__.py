@@ -215,13 +215,9 @@ class QuizScreen(Screen):
         nxt = self.current + 1
         if nxt == len(self.questions):
             if self.negative_marking:
-                message = f"""
-                Score: {self.score.score - self.score.wrong}
-                """
+                message = f"Final Score: {self.score.score - self.score.wrong}"
             else:
-                message = f"""
-                Score: {self.score.score}
-                """
+                message = f"Final Score: {self.score.score}"
 
             self.app.switch_screen(MainMenuScreen())
             self.app.notify(
