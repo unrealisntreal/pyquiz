@@ -1,0 +1,14 @@
+Q|How many minutes in an hour?
+A|60|V
+A|30|X
+
+Q|How many seconds in an minute?
+A|60|V
+A|15|X
+A|120|X
+
+Q|How many days in a month?
+A|29|V
+A|31|V
+A|30|V
+A|28|X

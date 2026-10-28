@@ -1,5 +1,5 @@
 {
-    "name": "Ultimate Math Test",
+    "name": "The Ultimate Math Test",
     "author": "unrealisntreal",
     "questions": [
         {
@@ -17,7 +17,7 @@
                 {
                     "text": "4",
                     "correct": false,
-                    "feedback": "Why the hell would that be true?"
+                    "feedback": "Why the hell would 1+1 = 4?"
                 }
             ]
         },
@@ -27,7 +27,7 @@
                 {
                     "text": "No",
                     "correct": true,
-                    "feedback": "Not to confuse with 1/inf, which is valid! And is equal to 0."
+                    "feedback": "Good job!"
                 },
                 {
                     "text": "Yes",
