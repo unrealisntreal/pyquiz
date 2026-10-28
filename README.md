@@ -22,7 +22,6 @@ py pyquiz
 
 ## Make your own quiz!
 You can format your quizzes in two different ways.
-
 Two examples can be found in `quizzes/` and be tested within the application.
 
 - **Modern Format `.json`**

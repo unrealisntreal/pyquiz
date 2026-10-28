@@ -5,7 +5,7 @@ A|30|X
 Q|How many seconds in an minute?
 A|60|V
 A|15|X
-A|120|X
+A|120|X|120 seconds is equal to 2 minutes!
 
 Q|How many days in a month?
 A|29|V
