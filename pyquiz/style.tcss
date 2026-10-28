@@ -1,3 +1,11 @@
+#mainmenu-row {
+    align: center middle;
+}
+
+#negative-marking {
+    border: none;
+}
+
 Screen {
     padding: 1 4;
 }
@@ -6,23 +14,19 @@ Rule {
     color: rgba(100, 100, 100, 0.45);
 }
 
-Horizontal.row {
-    align: center middle;
-}
-
 Input, Input:focus {
-    background: rgba(255, 255, 255, 0);
+    background: transparent;
     border: round rgba(255, 255, 255, 0.45);
 }
 
 Button, Button:focus {
-    background: rgba(255, 255, 255, 0);
+    background: transparent;
     text-style: none;
     border: round rgba(255, 255, 255, 0.45);
 }
 
 Button:hover {
-   background: rgba(255, 255, 255, 0);
+   background: transparent;
    text-style: none;
    border: round rgba(255, 255, 255, 0.75);
 }

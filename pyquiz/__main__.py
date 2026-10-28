@@ -22,7 +22,7 @@ class MainMenuScreen(Screen):
             logo.content = LOGO
             yield logo
 
-            with Horizontal(classes="row"):
+            with Horizontal(id="mainmenu-row"):
                 begin_button = Button()
                 begin_button.id = "begin"
                 begin_button.label = "Begin"
@@ -54,6 +54,11 @@ class MainMenuScreen(Screen):
 class SetupScreen(Screen):
     def compose(self) -> ComposeResult:
         with Vertical():
+            negative_marking = Button()
+            negative_marking.id = "negative-marking"
+            negative_marking.label = "[red](OFF)[/] Negative Marking"
+            yield negative_marking
+
             path_input = Input()
             path_input.id = "path-input"
             path_input.placeholder = "Insert the quiz path here..."
@@ -70,15 +75,31 @@ class SetupScreen(Screen):
                 go_back_button.label = "Go Back"
                 yield go_back_button
 
+    @on(Button.Pressed, "#negative-marking")
+    def enable_negative_marking(self):
+        negative_marking_button = self.query_one("#negative-marking", Button)
+        negative_marking_text   = str(negative_marking_button.label)
+        negative_marking        = "ON" in negative_marking_text
+
+        if negative_marking:
+            negative_marking_button.label = "[red](OFF)[/] Negative Marking"
+        else:
+            negative_marking_button.label = "[green](ON)[/] Negative Marking"
+
     @on(Button.Pressed, "#confirm")
     def confirm(self):
         try:
             path = self.query_one("#path-input", Input).value
             quiz = Quiz(path)
 
+            negative_marking_button = self.query_one("#negative-marking", Button)
+            negative_marking_text   = str(negative_marking_button.label)
+            negative_marking        = "ON" in negative_marking_text
+
             quiz_screen = QuizScreen(
                 quiz=quiz,
                 score=Score(),
+                negative_marking=negative_marking,
                 current=0
             )
 
@@ -97,13 +118,14 @@ class SetupScreen(Screen):
 
 
 class QuizScreen(Screen):
-    def __init__(self, quiz: Quiz, score: Score, current: int):
+    def __init__(self, quiz: Quiz, score: Score, negative_marking: bool, current: int):
         super().__init__()
         self.quiz = quiz
         self.score = score
         self.qname = quiz.name
         self.qauthor = quiz.author
         self.questions = quiz.questions
+        self.negative_marking = negative_marking
 
         self.current = current
 
@@ -192,13 +214,19 @@ class QuizScreen(Screen):
 
         nxt = self.current + 1
         if nxt == len(self.questions):
+            if self.negative_marking:
+                message = f"""
+                Score: {self.score.score}
+                """
+            else:
+                message = f"""
+                Score: {self.score.score - self.score.wrong}
+                """
+
             self.app.switch_screen(MainMenuScreen())
             self.app.notify(
                 title="Finished!",
-                message=f"""
-                Score: {self.score.score}
-                With Negative Marking: {self.score.score - self.score.wrong}
-                """,
+                message=message,
                 severity="information"
             )
             return
@@ -206,6 +234,7 @@ class QuizScreen(Screen):
         quiz_screen = QuizScreen(
             quiz=self.quiz,
             score=self.score,
+            negative_marking=self.negative_marking,
             current=nxt
         )
         self.app.switch_screen(quiz_screen)
