@@ -31,7 +31,7 @@ def decode_legacy(path: str) -> list:
                             choices = []
                     elif parts[0] == "A":
                         if parts[2] not in ("V", "X"):
-                            print(f"Error when loading line:\n\t{line}")
+                            raise ValueError(f"Error when loading line:\n\t{line}")
                         else:
                             choices.append(
                                 [
@@ -41,9 +41,9 @@ def decode_legacy(path: str) -> list:
                                 ]
                             )
                     else:
-                        print(f"Error when loading line:\n\t{line}")
+                        raise ValueError(f"Error when loading line:\n\t{line}")
                 else:
-                    print(f"Error when loading line:\n\t{line}")
+                    raise ValueError(f"Error when loading line:\n\t{line}")
 
                 if line.startswith("Q"):
                     wording = parts[1]
@@ -63,11 +63,11 @@ class Quiz:
             try:
                 with open(path, mode="r", encoding="utf-8") as file:
                     legacy_questions = decode_legacy(path)
-            except:
-                raise ValueError("Unknown Legacy Decoding Error.")
+            except FileNotFoundError:
+                raise FileNotFoundError(f"Quiz could not be found in path {path}")
 
             questions = []
-            for i, legacy_question in enumerate(legacy_questions):
+            for legacy_question in legacy_questions:
                 choices = []
                 for legacy_choice in legacy_question[1]:
                     choices.append(
