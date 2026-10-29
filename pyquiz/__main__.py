@@ -6,7 +6,8 @@ from textual.containers import Horizontal, Vertical
 from textual.screen import Screen
 from textual.widgets import Button, Input, Rule, Static
 
-from quiz import Quiz, Score
+from quiz import Quiz
+from score import Score
 
 LOGO = """
 [cornflowerblue]╭─╮[/][gold]╷ ╷[/]╭─╮╷ ╷╷╶─╮
