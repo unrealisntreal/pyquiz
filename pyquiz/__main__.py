@@ -49,7 +49,7 @@ class MainMenuScreen(Screen):
 
     @on(Button.Pressed, "#github")
     def open_github(self):
-        webbrowser.open("https://github.com/unrealisntreal/qcmaker")
+        webbrowser.open("https://github.com/unrealisntreal/pyquiz")
 
 
 class SetupScreen(Screen):
